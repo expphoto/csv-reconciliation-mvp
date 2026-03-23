@@ -158,30 +158,6 @@ If you want to AI to help you analyze your actual CSVs:
 - Use synthetic or anonymized data if you need AI help with analysis
 - Read the AI assistant's privacy policy before uploading sensitive files
 
-### If You Want AI Analysis Without Training Risk
-
-If you want AI to help analyze your actual financial data but want to avoid the training risk of free models, consider:
-
-1. **Creating a separate OpenAI API key** at [platform.openai.com](https://platform.openai.com/)
-   - This gives you access to models like GPT-4
-   - API-based interactions typically don't use your data for training
-   - Check the current OpenAI privacy policy for details
-
-2. **Using ChatGPT Playground:**
-   - Offers a web interface for running models
-   - Generally has different privacy terms than free hosted models
-   - Don't share persistent account data
-
-3. **Review privacy policies carefully:**
-   - Every AI provider has different terms
-   - Some offer options to opt-out of training
-   - Look for "data retention" and "training on user data" sections
-
-**Remember:** Even with API-based tools, it's still good practice to:
-- Anonymize or remove sensitive details before sharing
-- Test with fake/sample data first
-- Only share what's absolutely necessary
-
 ## What If the AI Can't Access the Files?
 
 Some AI tools can't see your local files directly. In that case:

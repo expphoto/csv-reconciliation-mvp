@@ -265,21 +265,6 @@ Free AI models (like those available through OpenCode Zen) use your data to trai
 
 ❌ **DO NOT use Open Code for:** Analyzing your actual financial CSV files or transaction data.
 
-**If You Want AI Analysis:**
-
-If you want AI to help you analyze your actual financial data, consider:
-
-1. Creating a separate OpenAI API key at [platform.openai.com](https://platform.openai.com/)
-2. Using ChatGPT Playground or similar tools that don't train on your data
-3. Reviewing the AI provider's privacy policy carefully before uploading sensitive information
-
-**Keep Your Data Safe:**
-
-- Run the app yourself to see results first
-- Only share synthetic or anonymized sample data with free AI models
-- Never upload real bank statements, credit card statements, or tax documents to free AI services
-- Keep backups of your original CSV files
-
 ---
 
 ### Alternative AI Assistants
