@@ -92,20 +92,11 @@ Once Open Code is installed:
    /connect
    ```
 
-   Select **OpenCode Zen** as your provider.
+    Select **OpenCode Zen** as your provider.
 
-4. **Get an API key:**
+4. **Choose a free model:**
 
-   Visit [opencode.ai/auth](https://opencode.ai/auth) to sign up for a free account. Copy your API key from the website.
-
-5. **Paste the API key:**
-
-   Go back to your terminal and paste the API key when prompted.
-
-**Free models available through OpenCode Zen include:**
-- Big Pickle
-- GLM 4.7
-- Grok Code Fast 1
+    Type `/model` in the Open Code interface to select any free model from the available options.
 
 ---
 
