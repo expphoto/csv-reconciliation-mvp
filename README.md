@@ -267,18 +267,6 @@ Free AI models (like those available through OpenCode Zen) use your data to trai
 
 ---
 
-### Alternative AI Assistants
-
-If you'd rather use a different AI coding assistant (like GitHub Copilot, Claude, or ChatGPT), the same guidance applies:
-
-- Use them for setup and technical help
-- Don't share sensitive financial data
-- Review their privacy policies before uploading anything
-
-For more detailed guidance on using AI assistants, see [docs/OPEN_CODE_GUIDE.md](docs/OPEN_CODE_GUIDE.md).
-
----
-
 ## How to Use the App
 
 The app has 8 tabs. Work through them in order.
