@@ -157,13 +157,146 @@ Your browser will automatically open to the app. If it doesn't, look for the URL
 
 ## Using Open Code to Help You
 
-If you're not comfortable with terminals and commands, you can ask an AI coding assistant (like Open Code, GitHub Copilot, or Claude) to do the setup for you.
+If you're not comfortable with terminals and commands, you can use an AI coding assistant like Open Code to do the setup for you.
 
-Open your AI assistant and paste something like this:
+### Installing Open Code
 
-> Please set up this local Python project for me. Create a virtual environment, install the requirements from requirements.txt, and run the Streamlit app. If anything fails, fix the setup and tell me what URL to open in my browser.
+Choose your operating system below:
 
-**Important note about privacy:** Be careful before pasting sensitive financial data into any AI tool. This app runs locally and doesn't send data anywhere, but AI assistants operate differently. Use AI for setup help, not for analyzing your actual financial CSVs unless you're comfortable with that workflow.
+#### Install on Windows
+
+**Option A – Scoop (Recommended):**
+
+Open PowerShell and run:
+
+```powershell
+scoop install opencode
+```
+
+**Option B – Chocolatey:**
+
+Open PowerShell and run:
+
+```powershell
+choco install opencode
+```
+
+**Option C – npm:**
+
+```powershell
+npm install -g opencode-ai@latest
+```
+
+#### Install on macOS
+
+**Option A – Install Script (Fastest, No Node.js Needed):**
+
+```bash
+curl -fsSL https://opencode.ai/install | bash
+```
+
+**Option B – Homebrew:**
+
+```bash
+brew install anomalyco/tap/opencode
+```
+
+**Option C – npm:**
+
+```bash
+npm install -g opencode-ai@latest
+```
+
+#### Verify Installation
+
+Make sure Open Code is installed:
+
+**Windows (PowerShell):**
+```powershell
+opencode --version
+```
+
+**macOS (Terminal):**
+```bash
+opencode --version
+```
+
+---
+
+### Using Open Code to Set Up This Project
+
+Once Open Code is installed:
+
+1. **Navigate to your project folder:**
+
+   ```bash
+   cd path/to/reconcile-mvp
+   ```
+
+2. **Launch Open Code:**
+
+   ```bash
+   opencode
+   ```
+
+3. **Connect to a free model:**
+
+   Inside the Open Code interface, type `/connect` and select **OpenCode Zen** as your provider. Visit [opencode.ai/auth](https://opencode.ai/auth) to sign up for a free account, copy your API key, and paste it back into the terminal.
+
+   Free models available through OpenCode Zen include Big Pickle, GLM 4.7, and Grok Code Fast 1.
+
+4. **Ask Open Code to set up the app:**
+
+   Open Code will enter an interactive mode. You can ask:
+
+   > Please set up this local Python project for me. Create a virtual environment, install the requirements from requirements.txt, and run the Streamlit app. If anything fails, fix the setup and tell me what URL to open in my browser.
+
+   Open Code will run the commands and show you the results. When it's done, it will give you a URL to open in your browser.
+
+---
+
+### ⚠️ Important Privacy and Safety Notes
+
+**About Free Models:**
+
+Free AI models (like those available through OpenCode Zen) use your data to train and improve their models. This means:
+
+- Your data may be stored on their servers
+- Your data might be used in future model training
+- You cannot always delete your data once submitted
+
+**Best Practice for This Project:**
+
+✅ **DO use Open Code for:** Setting up the app, fixing installation issues, and troubleshooting technical problems.
+
+❌ **DO NOT use Open Code for:** Analyzing your actual financial CSV files or transaction data.
+
+**If You Want AI Analysis:**
+
+If you want AI to help you analyze your actual financial data, consider:
+
+1. Creating a separate OpenAI API key at [platform.openai.com](https://platform.openai.com/)
+2. Using ChatGPT Playground or similar tools that don't train on your data
+3. Reviewing the AI provider's privacy policy carefully before uploading sensitive information
+
+**Keep Your Data Safe:**
+
+- Run the app yourself to see results first
+- Only share synthetic or anonymized sample data with free AI models
+- Never upload real bank statements, credit card statements, or tax documents to free AI services
+- Keep backups of your original CSV files
+
+---
+
+### Alternative AI Assistants
+
+If you'd rather use a different AI coding assistant (like GitHub Copilot, Claude, or ChatGPT), the same guidance applies:
+
+- Use them for setup and technical help
+- Don't share sensitive financial data
+- Review their privacy policies before uploading anything
+
+For more detailed guidance on using AI assistants, see [docs/OPEN_CODE_GUIDE.md](docs/OPEN_CODE_GUIDE.md).
 
 ---
 

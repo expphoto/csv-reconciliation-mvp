@@ -1,6 +1,113 @@
 # Using Open Code (or Similar AI) to Help Set Up the App
 
-If you're not comfortable with terminals and commands, you can ask an AI coding assistant to do the setup for you.
+If you're not comfortable with terminals and commands, you can ask an AI coding assistant like Open Code to do the setup for you.
+
+## Installing Open Code
+
+Choose your operating system below:
+
+### Install on Windows
+
+**Option A – Scoop (Recommended):**
+
+Open PowerShell and run:
+
+```powershell
+scoop install opencode
+```
+
+**Option B – Chocolatey:**
+
+Open PowerShell and run:
+
+```powershell
+choco install opencode
+```
+
+**Option C – npm:**
+
+```powershell
+npm install -g opencode-ai@latest
+```
+
+**Note:** The npm package name is `opencode-ai`, not `opencode`.
+
+### Install on macOS
+
+**Option A – Install Script (Fastest, No Node.js Needed):**
+
+```bash
+curl -fsSL https://opencode.ai/install | bash
+```
+
+**Option B – Homebrew:**
+
+```bash
+brew install anomalyco/tap/opencode
+```
+
+**Option C – npm:**
+
+```bash
+npm install -g opencode-ai@latest
+```
+
+### Verify Installation
+
+Make sure Open Code is installed:
+
+**Windows (PowerShell):**
+```powershell
+opencode --version
+```
+
+**macOS (Terminal):**
+```bash
+opencode --version
+```
+
+---
+
+## Connecting to a Free Model
+
+Once Open Code is installed:
+
+1. **Navigate to your project folder:**
+
+   ```bash
+   cd path/to/reconcile-mvp
+   ```
+
+2. **Launch Open Code:**
+
+   ```bash
+   opencode
+   ```
+
+3. **Connect to OpenCode Zen:**
+
+   Inside the Open Code TUI (terminal interface), type:
+
+   ```
+   /connect
+   ```
+
+   Select **OpenCode Zen** as your provider.
+
+4. **Get an API key:**
+
+   Visit [opencode.ai/auth](https://opencode.ai/auth) to sign up for a free account. Copy your API key from the website.
+
+5. **Paste the API key:**
+
+   Go back to your terminal and paste the API key when prompted.
+
+**Free models available through OpenCode Zen include:**
+- Big Pickle
+- GLM 4.7
+- Grok Code Fast 1
+
+---
 
 ## What to Ask Your AI Assistant
 
@@ -60,18 +167,43 @@ The AI might ask you to copy-paste these commands into your terminal, or it migh
 ### For Analysis (Be Careful)
 ⚠️ **Be cautious about sharing CSV files with AI.**
 
-If you want the AI to help you analyze your actual CSVs:
+If you want to AI to help you analyze your actual CSVs:
 
 **Consider these risks:**
 - AI assistants may store your data on their servers
-- Your data might be used to improve the AI's models
-- Once uploaded, you can't always delete the data
+- Your data might be used to improve AI's models
+- Once uploaded, you can't always delete your data
+- **Free models often use your data for training** - this means your data may be incorporated into future versions of the model
 
 **Safer alternatives:**
 - Use the app yourself first to see results
 - Only ask AI to help with structure/formatting, not analysis
 - Use synthetic or anonymized data if you need AI help with analysis
 - Read the AI assistant's privacy policy before uploading sensitive files
+
+### If You Want AI Analysis Without Training Risk
+
+If you want AI to help analyze your actual financial data but want to avoid the training risk of free models, consider:
+
+1. **Creating a separate OpenAI API key** at [platform.openai.com](https://platform.openai.com/)
+   - This gives you access to models like GPT-4
+   - API-based interactions typically don't use your data for training
+   - Check the current OpenAI privacy policy for details
+
+2. **Using ChatGPT Playground:**
+   - Offers a web interface for running models
+   - Generally has different privacy terms than free hosted models
+   - Don't share persistent account data
+
+3. **Review privacy policies carefully:**
+   - Every AI provider has different terms
+   - Some offer options to opt-out of training
+   - Look for "data retention" and "training on user data" sections
+
+**Remember:** Even with API-based tools, it's still good practice to:
+- Anonymize or remove sensitive details before sharing
+- Test with fake/sample data first
+- Only share what's absolutely necessary
 
 ## What If the AI Can't Access the Files?
 
