@@ -1,0 +1,21 @@
+transaction_date,vendor_name,debit_amount,credit_amount,reference_number,account_code,expense_category,notes
+2024-01-15,STARBUCKS COFFEE,4.50,,TXN-001,6010,Food & Beverage,Coffee for meeting
+2024-01-18,Amazon Web Services Inc,89.00,,TXN-002,6100,Cloud Computing,AWS monthly
+2024-01-20,PAYROLL TRANSFER,,5000.00,TXN-003,2010,Payroll,January salaries
+2024-01-22,Office Depot Retail,156.32,,TXN-004,6020,Office Supplies,Printer paper
+2024-01-25,City Utility Company,245.00,,TXN-005,6200,Utilities,January bill
+2024-01-28,Fred Astaire Dance Studios,150.00,,TXN-006,6500,Advertising,Dance class sponsorship
+2024-02-01,Pax8 Inc,299.00,,TXN-007,6100,Software Subscription,SaaS platform
+2024-02-05,Google Ads,350.00,,TXN-008,6500,Advertising,February campaign
+2024-02-10,Dell Technologies,850.00,,TXN-009,6300,Computer Equipment,New laptop
+2024-02-15,Restaurant Supply Co,425.00,,TXN-010,6030,Restaurant,Kitchen supplies
+2024-02-18,ATM CASH WITHDRAWAL,200.00,,TXN-011,1000,Cash,Petty cash
+2024-02-20,ABC Corporation,,3500.00,TXN-012,4000,Revenue,Project payment
+2024-02-22,Microsoft Corporation,12.00,,TXN-013,6100,Software,Office 365
+2024-02-25,Uber Technologies Inc,45.00,,TXN-014,6040,Transportation,Client travel
+2024-03-01,Landlord LLC,2500.00,,TXN-015,6400,Rent,March rent
+2024-03-05,Business Insurance Co,180.00,,TXN-016,6210,Insurance,Monthly premium
+2024-03-10,Staples Inc,89.50,,TXN-017,6020,Office Supplies,Ink cartridges
+2024-03-12,Tech Support Inc,200.00,,TXN-018,6050,IT Services,Maintenance contract
+2024-03-15,Bank Loan,,500.00,TXN-019,2500,Loan,Monthly payment
+2024-03-20,XYZ LLC,,2750.00,TXN-020,4000,Revenue,Consulting services

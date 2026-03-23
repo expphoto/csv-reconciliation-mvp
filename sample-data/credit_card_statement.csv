@@ -1,0 +1,15 @@
+Transaction Date,Merchant,Debit,Credit,Card Number,Category
+01/15/2024,STARBUCKS COFFEE,4.50,,XXXX-1234,Food & Dining
+01/18/2024,AMAZON WEB SERVICES AWS,89.00,,XXXX-1234,Software
+01/22/2024,Office Depot Corp,156.32,,XXXX-1234,Office Supplies
+01/28/2024,FRED ASTAIRE DANCE STUDIOS,150.00,,XXXX-5678,Marketing
+02/01/2024,Pax8 Cloud Services,299.00,,XXXX-1234,Software
+02/05/2024,Google Ads Platform,350.00,,XXXX-5678,Marketing
+02/10/2024,Dell Computer Corp,850.00,,XXXX-1234,Hardware
+02/15/2024,Restaurant Supply Company,425.00,,XXXX-5678,Supplies
+02/22/2024,Microsoft 365 Subscription,12.00,,XXXX-1234,Software
+02/25/2024,Uber Technologies,45.00,,XXXX-1234,Travel
+03/05/2024,Insurance Premium Payment,180.00,,XXXX-5678,Insurance
+03/10/2024,Staples Business Depot,89.50,,XXXX-1234,Office Supplies
+03/12/2024,Tech Support Services,200.00,,XXXX-1234,Services
+03/18/2024,Auto Payment - Business Loan,500.00,,XXXX-5678,Loan Payment
