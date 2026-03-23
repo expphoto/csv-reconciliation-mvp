@@ -82,21 +82,7 @@ Once Open Code is installed:
 
    ```bash
    opencode
-   ```
-
-3. **Connect to OpenCode Zen:**
-
-   Inside the Open Code TUI (terminal interface), type:
-
-   ```
-   /connect
-   ```
-
-    Select **OpenCode Zen** as your provider.
-
-4. **Choose a free model:**
-
-    Type `/model` in the Open Code interface to select any free model from the available options.
+    ```
 
 ---
 
@@ -108,7 +94,7 @@ Open your AI assistant (Open Code, GitHub Copilot, Claude, ChatGPT with code ana
 
 **Copy and paste this prompt:**
 
-> Please set up this local Python project for me. Create a virtual environment, install the requirements from requirements.txt, and run the Streamlit app. If anything fails, fix the setup and tell me what URL to open in my browser to access the app.
+> Please set up this local Python project for me. Create a virtual environment, install the requirements from requirements.txt, and run the Streamlit app. If anything fails, fix the setup and tell me what URL to open in my browser. The project is at https://github.com/expphoto/csv-reconciliation-mvp.git
 
 ---
 

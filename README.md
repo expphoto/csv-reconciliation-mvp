@@ -235,21 +235,17 @@ Once Open Code is installed:
 
 2. **Launch Open Code:**
 
-   ```bash
-   opencode
-   ```
+    ```bash
+    opencode
+    ```
 
-3. **Connect to a free model:**
+3. **Ask Open Code to set up the app:**
 
-    Inside the Open Code interface, type `/connect` and select **OpenCode Zen** as your provider. Then type `/model` to choose any free model from the available options.
+    Open Code will enter an interactive mode. You can ask:
 
-4. **Ask Open Code to set up the app:**
+    > Please set up this local Python project for me. Create a virtual environment, install the requirements from requirements.txt, and run the Streamlit app. If anything fails, fix the setup and tell me what URL to open in my browser. The project is at https://github.com/expphoto/csv-reconciliation-mvp.git
 
-   Open Code will enter an interactive mode. You can ask:
-
-   > Please set up this local Python project for me. Create a virtual environment, install the requirements from requirements.txt, and run the Streamlit app. If anything fails, fix the setup and tell me what URL to open in my browser.
-
-   Open Code will run the commands and show you the results. When it's done, it will give you a URL to open in your browser.
+    Open Code will run the commands and show you the results. When it's done, it will give you a URL to open in your browser.
 
 ---
 
