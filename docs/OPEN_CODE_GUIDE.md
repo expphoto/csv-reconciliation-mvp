@@ -86,7 +86,15 @@ Once Open Code is installed:
 
 ---
 
-## What to Ask Your AI Assistant
+**Copy and paste this prompt:**
+
+> Please set up this local Python project for me. Create a virtual environment, install the requirements from requirements.txt, and run the Streamlit app. If anything fails, fix the setup and tell me what URL to open in my browser. The project is at https://github.com/expphoto/csv-reconciliation-mvp.git
+
+**Important:** Run the setup commands and start the app, but do NOT read any CSV files or access financial data.
+
+---
+
+## What the AI Should Do
 
 Open your AI assistant (Open Code, GitHub Copilot, Claude, ChatGPT with code analysis, etc.) and paste something like this:
 
@@ -107,6 +115,8 @@ The AI should walk through these steps:
 3. **Install requirements** (`pip install -r requirements.txt`)
 4. **Run the app** (`streamlit run app.py`)
 5. **Give you a URL** to open in your browser
+
+**Note:** The AI should have chosen a free model (via `/model`) before running any commands. This is required for Open Code to function.
 
 If something goes wrong (like missing Python or permission issues), the AI should troubleshoot and fix it.
 
@@ -140,6 +150,8 @@ The AI might ask you to copy-paste these commands into your terminal, or it migh
 
 ### For Setup (Safe)
 ✅ **Using AI for setup is safe.** The AI only needs to see code files and setup instructions. It doesn't need your financial data.
+
+**Note:** The AI must choose a free model (via `/model`) before it can function. This is fine for setup tasks—just remember to tell it NOT to read any CSV files or financial data.
 
 ### For Analysis (Be Careful)
 ⚠️ **Be cautious about sharing CSV files with AI.**

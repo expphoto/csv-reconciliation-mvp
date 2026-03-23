@@ -239,13 +239,19 @@ Once Open Code is installed:
     opencode
     ```
 
-3. **Ask Open Code to set up the app:**
+3. **Choose a free model:**
 
-   You can ask:
+    Type `/model` in Open Code interface and select any free model from the available options.
 
-   > Please set up this local Python project for me. Create a virtual environment, install the requirements from requirements.txt, and run the Streamlit app. If anything fails, fix the setup and tell me what URL to open in my browser. The project is at https://github.com/expphoto/csv-reconciliation-mvp.git
+4. **Ask Open Code to set up the app:**
 
-   Open Code will run the commands and show you the results. When it's done, it will give you a URL to open in your browser.
+    Open Code will enter an interactive mode. You can ask:
+
+    > Please set up this local Python project for me. Create a virtual environment, install the requirements from requirements.txt, and run the Streamlit app. If anything fails, fix the setup and tell me what URL to open in my browser. The project is at https://github.com/expphoto/csv-reconciliation-mvp.git
+
+    **Important:** The AI should run the setup commands and start the app, but it must NOT read any CSV files or access your financial data.
+
+    Open Code will run the commands and show you the results. When it's done, it will give you a URL to open in your browser.
 
 ---
 
