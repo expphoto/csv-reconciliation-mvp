@@ -18,11 +18,11 @@ st.markdown("*A local-only tool for reconciling small-business expense CSVs*")
 with st.sidebar:
     st.markdown("### USTech.Ninja Finance Tools")
     st.caption(
-        "Reconcile locally first. Add Hermes when you want recurring finance briefs, "
+        "Reconcile locally first. Add a custom AI finance agent when you want recurring finance briefs, "
         "budget coaching, bookkeeping workflows, and approved integrations."
     )
     st.info(
-        "Your CSVs stay on this computer. Hermes is optional and only receives data "
+        "Your CSVs stay on this computer. A custom AI agent is optional and only receives data "
         "you explicitly choose to share."
     )
 
@@ -267,7 +267,7 @@ def build_finance_brief(
     category_totals: Dict,
     include_vendor_names: bool = False,
 ) -> str:
-    """Create a concise, local-only handoff for a finance review or Hermes."""
+    """Create a concise, local-only handoff for a finance review or custom AI agent."""
     if df is None or df.empty:
         return "No normalized transactions are available yet."
 
@@ -753,7 +753,7 @@ with tabs[6]:
 with tabs[7]:
     st.header("Finance Brief")
     st.markdown(
-        "Create a concise, local-only handoff for yourself, your bookkeeper, or Hermes. "
+        "Create a concise, local-only handoff for yourself, your bookkeeper, or a custom AI finance agent. "
         "Raw CSV files stay in this app unless you explicitly export or share them."
     )
     if st.session_state.normalized_data is None:
@@ -780,8 +780,8 @@ with tabs[7]:
                 mime='text/markdown',
             )
             st.success(
-                "This brief is ready for a human review or an explicit Hermes handoff. "
-                "Hermes can add context, trends, budgeting, and next actions without replacing bookkeeping judgment."
+                "This brief is ready for a human review or an explicit custom-agent handoff. "
+                "A custom AI agent can add context, trends, budgeting, and next actions without replacing bookkeeping judgment."
             )
 
 with tabs[8]:
