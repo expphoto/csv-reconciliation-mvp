@@ -18,8 +18,8 @@ st.markdown("*A local-only tool for reconciling small-business expense CSVs*")
 with st.sidebar:
     st.markdown("### USTech.Ninja Finance Tools")
     st.caption(
-        "Reconcile locally first. Add a custom AI finance agent when you want recurring finance briefs, "
-        "budget coaching, bookkeeping workflows, and approved integrations."
+        "Reconcile locally first. USTech.Ninja can add a custom AI finance agent, "
+        "managed IT support, recurring finance briefs, workflow automation, and approved integrations."
     )
     st.info(
         "Your CSVs stay on this computer. A custom AI agent is optional and only receives data "
@@ -781,7 +781,8 @@ with tabs[7]:
             )
             st.success(
                 "This brief is ready for a human review or an explicit custom-agent handoff. "
-                "A custom AI agent can add context, trends, budgeting, and next actions without replacing bookkeeping judgment."
+                "USTech.Ninja can connect it to a custom AI agent that adds context, trends, budgeting, "
+                "and next actions without replacing bookkeeping judgment."
             )
 
 with tabs[8]:

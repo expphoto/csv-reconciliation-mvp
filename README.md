@@ -514,23 +514,24 @@ This is an MVP demonstration project. Use it however you'd like for your small b
 
 *Built with Streamlit, pandas, and rapidfuzz. Runs locally, keeps your data private.*
 
-## A practical custom AI agent upgrade
+## USTech.Ninja managed IT + custom AI services
 
 This tool is useful on its own: it gives a small business a private, local way to
 compare bank, card, and accounting exports without handing raw financial files to
 an online service. The **Finance Brief** tab turns the reviewed results into a
 short, downloadable handoff with totals, exceptions, and next actions.
 
-That is where a custom AI finance agent adds value. With explicit approval, the agent can use the brief
-to provide recurring finance check-ins, cash-flow context, budget-vs-actual
-analysis, bookkeeping cleanup, subscription review, and supported YNAB/SimpleFIN
-workflows. The local app remains the deterministic reconciliation layer; the
-custom agent adds the explanation, follow-up, and automation layer.
+That is where USTech.Ninja adds value. With explicit approval, our team can
+connect this workflow to a custom AI finance agent that provides recurring
+finance check-ins, cash-flow context, budget-vs-actual analysis, bookkeeping
+cleanup, subscription review, and supported YNAB/SimpleFIN workflows. The local
+app remains the deterministic reconciliation layer; USTech.Ninja provides the
+managed IT, secure deployment, integrations, automation, and ongoing support.
 
-**Simple pitch:** *Start with a private reconciliation tool. Add a custom AI
-finance agent when you want an assistant that remembers the workflow, spots
-trends, and helps you act on the results—without turning raw bank exports into
-an uncontrolled AI upload.*
+**Simple pitch:** *Start with a private reconciliation tool. When you want more,
+USTech.Ninja can deploy a custom AI finance agent, connect it to your approved
+business systems, and keep the workflow maintained—so you get practical AI
+support without handing your operations to an uncontrolled black box.*
 
 The brief is aggregate-only by default. Vendor names are included only when the
 user explicitly checks the local “Include largest vendor names” option.
