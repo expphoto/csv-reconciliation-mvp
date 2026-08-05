@@ -15,6 +15,17 @@ st.set_page_config(
 st.title("📊 CSV Reconciliation MVP")
 st.markdown("*A local-only tool for reconciling small-business expense CSVs*")
 
+with st.sidebar:
+    st.markdown("### USTech.Ninja Finance Tools")
+    st.caption(
+        "Reconcile locally first. Add Hermes when you want recurring finance briefs, "
+        "budget coaching, bookkeeping workflows, and approved integrations."
+    )
+    st.info(
+        "Your CSVs stay on this computer. Hermes is optional and only receives data "
+        "you explicitly choose to share."
+    )
+
 COMMON_SCHEMA = [
     'date', 'amount', 'vendor_raw', 'vendor_normalized',
     'account', 'source', 'category_raw', 'memo', 'transaction_type'
@@ -40,6 +51,8 @@ def init_session_state():
         st.session_state.matches = []
     if 'category_totals' not in st.session_state:
         st.session_state.category_totals = {}
+    if 'finance_brief' not in st.session_state:
+        st.session_state.finance_brief = ''
 
 def parse_date(date_str):
     if pd.isna(date_str) or date_str == '':
@@ -248,6 +261,108 @@ def calculate_category_totals(df: pd.DataFrame) -> Dict:
     
     return result
 
+def build_finance_brief(
+    df: pd.DataFrame,
+    matches: List[Dict],
+    category_totals: Dict,
+    include_vendor_names: bool = False,
+) -> str:
+    """Create a concise, local-only handoff for a finance review or Hermes."""
+    if df is None or df.empty:
+        return "No normalized transactions are available yet."
+
+    work = df.copy()
+    work['date'] = pd.to_datetime(work['date'], errors='coerce')
+    expenses = work[work['transaction_type'] == 'expense']
+    income = work[work['transaction_type'] == 'income']
+    transfers = work[work['transaction_type'] == 'transfer_exclude']
+    matched_indices = set()
+    for match in matches:
+        matched_indices.update([match['tx_a_idx'], match['tx_b_idx']])
+
+    unmatched = work[~work.index.isin(matched_indices)]
+    uncategorized = work[
+        work['category_raw'].isna() | (work['category_raw'].astype(str).str.strip() == '')
+    ]
+    blank_vendors = work[
+        work['vendor_raw'].isna() | (work['vendor_raw'].astype(str).str.strip() == '')
+    ]
+
+    date_values = work['date'].dropna()
+    date_range = (
+        f"{date_values.min().date()} through {date_values.max().date()}"
+        if not date_values.empty else "unknown"
+    )
+    lines = [
+        "# Finance Reconciliation Brief",
+        "",
+        "Generated locally by CSV Reconciliation Tool. No raw CSV data was transmitted.",
+        "",
+        "## Scope",
+        f"- Period: {date_range}",
+        f"- Sources: {work['source'].nunique()}",
+        f"- Transactions: {len(work):,}",
+        f"- Expenses: ${expenses['amount'].sum():,.2f}",
+        f"- Income: ${income['amount'].sum():,.2f}",
+        f"- Transfers excluded: ${transfers['amount'].sum():,.2f}",
+        "",
+        "## Reconciliation status",
+        f"- Potential matches reviewed: {len(matches):,}",
+        f"- Transactions not in a match: {len(unmatched):,}",
+        f"- Uncategorized transactions: {len(uncategorized):,}",
+        f"- Blank vendor names: {len(blank_vendors):,}",
+        "",
+        "## Category totals",
+    ]
+
+    if category_totals:
+        for category, data in sorted(category_totals.items()):
+            lines.append(
+                f"- {category}: agreed ${data['manual_override']:,.2f} "
+                f"(range ${data['low']:,.2f}–${data['high']:,.2f})"
+            )
+    else:
+        lines.append("- Not calculated yet")
+
+    lines.extend([
+        "",
+        "## Suggested next actions",
+        "- Review probable matches before accepting or excluding them.",
+        "- Resolve uncategorized and blank-vendor transactions.",
+        "- Verify transfers and credit-card payments are not counted as new spending.",
+    ])
+
+    if include_vendor_names:
+        top_vendors = (
+            expenses.assign(vendor=expenses['vendor_raw'].replace('', 'Unknown'))
+            .groupby('vendor')['amount'].sum()
+            .sort_values(ascending=False)
+            .head(10)
+        )
+        lines.extend(["", "## Largest expense vendors (included by request)"])
+        for vendor, amount in top_vendors.items():
+            lines.append(f"- {vendor}: ${amount:,.2f}")
+
+    return "\n".join(lines)
+
+def build_review_queue(df: pd.DataFrame, matches: List[Dict]) -> pd.DataFrame:
+    """Return a local, downloadable queue of items needing human review."""
+    matched_indices = set()
+    for match in matches:
+        matched_indices.update([match['tx_a_idx'], match['tx_b_idx']])
+    queue = df.copy()
+    queue['review_reason'] = ''
+    queue.loc[~queue.index.isin(matched_indices), 'review_reason'] += 'unmatched; '
+    queue.loc[
+        queue['category_raw'].isna() | (queue['category_raw'].astype(str).str.strip() == ''),
+        'review_reason'
+    ] += 'uncategorized; '
+    queue.loc[
+        queue['vendor_raw'].isna() | (queue['vendor_raw'].astype(str).str.strip() == ''),
+        'review_reason'
+    ] += 'blank vendor; '
+    return queue[queue['review_reason'] != ''].copy()
+
 init_session_state()
 
 tabs = st.tabs([
@@ -258,6 +373,7 @@ tabs = st.tabs([
     "🔗 Matches",
     "📋 Review",
     "💰 Category Reconciliation",
+    "🧠 Finance Brief",
     "📥 Export"
 ])
 
@@ -576,6 +692,15 @@ with tabs[5]:
             else:
                 st.info("No blank vendors")
 
+        review_queue = build_review_queue(df, st.session_state.matches)
+        if not review_queue.empty:
+            st.download_button(
+                "Download Review Queue",
+                data=review_queue.to_csv(index=False).encode('utf-8'),
+                file_name='reconciliation_review_queue.csv',
+                mime='text/csv',
+            )
+
 with tabs[6]:
     st.header("Category Reconciliation")
     st.markdown("Reconcile category totals across sources and set agreed values")
@@ -626,6 +751,40 @@ with tabs[6]:
                     st.success(f"Agreed Total: ${data['manual_override']:,.2f}")
 
 with tabs[7]:
+    st.header("Finance Brief")
+    st.markdown(
+        "Create a concise, local-only handoff for yourself, your bookkeeper, or Hermes. "
+        "Raw CSV files stay in this app unless you explicitly export or share them."
+    )
+    if st.session_state.normalized_data is None:
+        st.warning("Please normalize data first")
+    else:
+        include_vendor_names = st.checkbox(
+            "Include largest vendor names in the brief",
+            value=False,
+            help="Leave off for a privacy-minimized summary. Category and reconciliation counts remain included.",
+        )
+        if st.button("Generate Finance Brief"):
+            st.session_state.finance_brief = build_finance_brief(
+                st.session_state.normalized_data,
+                st.session_state.matches,
+                st.session_state.category_totals,
+                include_vendor_names,
+            )
+        if st.session_state.get('finance_brief'):
+            st.code(st.session_state.finance_brief, language='markdown')
+            st.download_button(
+                "Download Finance Brief",
+                data=st.session_state.finance_brief.encode('utf-8'),
+                file_name='finance_reconciliation_brief.md',
+                mime='text/markdown',
+            )
+            st.success(
+                "This brief is ready for a human review or an explicit Hermes handoff. "
+                "Hermes can add context, trends, budgeting, and next actions without replacing bookkeeping judgment."
+            )
+
+with tabs[8]:
     st.header("Export Results")
     st.markdown("Export reconciliation summary and results")
     

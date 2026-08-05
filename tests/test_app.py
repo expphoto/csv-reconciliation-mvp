@@ -6,7 +6,11 @@ import os
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from app import parse_date, normalize_to_common_schema, apply_rules, calculate_match_score, find_matches, calculate_category_totals, is_card_payment
+from app import (
+    parse_date, normalize_to_common_schema, apply_rules, calculate_match_score,
+    find_matches, calculate_category_totals, is_card_payment,
+    build_finance_brief, build_review_queue,
+)
 
 
 class TestDateParsing(unittest.TestCase):
@@ -258,15 +262,46 @@ class TestCategoryTotals(unittest.TestCase):
     def test_category_totals_by_source(self):
         totals = calculate_category_totals(self.df)
         self.assertIn('sources', totals['software'])
+
+    def test_category_totals_values(self):
+        totals = calculate_category_totals(self.df)
         self.assertIn('low', totals['software'])
         self.assertIn('high', totals['software'])
         self.assertIn('midpoint', totals['software'])
-    
-    def test_category_totals_values(self):
-        totals = calculate_category_totals(self.df)
         self.assertEqual(totals['software']['low'], 100.0)
         self.assertEqual(totals['software']['high'], 200.0)
         self.assertEqual(totals['software']['midpoint'], 150.0)
+
+
+class TestFinanceBrief(unittest.TestCase):
+    def setUp(self):
+        self.df = pd.DataFrame({
+            'date': [pd.Timestamp('2024-01-15'), pd.Timestamp('2024-01-16')],
+            'amount': [100.0, 25.0],
+            'vendor_raw': ['Vendor A', ''],
+            'vendor_normalized': ['vendor_a', ''],
+            'account': ['Checking', 'Checking'],
+            'source': ['bank', 'card'],
+            'category_raw': ['software', ''],
+            'memo': ['', 'autopay'],
+            'transaction_type': ['expense', 'transfer_exclude'],
+        })
+
+    def test_finance_brief_is_aggregate_by_default(self):
+        brief = build_finance_brief(self.df, [], {}, include_vendor_names=False)
+        self.assertIn('Transactions: 2', brief)
+        self.assertIn('Uncategorized transactions: 1', brief)
+        self.assertNotIn('Vendor A', brief)
+
+    def test_finance_brief_can_include_vendor_names(self):
+        brief = build_finance_brief(self.df, [], {}, include_vendor_names=True)
+        self.assertIn('Vendor A', brief)
+
+    def test_review_queue_flags_unmatched_and_blank_vendor(self):
+        queue = build_review_queue(self.df, [])
+        self.assertEqual(len(queue), 2)
+        self.assertIn('unmatched', queue.iloc[0]['review_reason'])
+        self.assertIn('blank vendor', queue.iloc[1]['review_reason'])
 
 
 if __name__ == '__main__':
